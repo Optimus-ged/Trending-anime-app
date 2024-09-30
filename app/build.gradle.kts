@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -68,6 +69,9 @@ dependencies {
     // Coroutines
 //    implementation (libs.kotlinx.coroutines.core)
 //    implementation (libs.kotlinx.coroutines.android)
+
+    // Coroutines serialization
+    implementation(libs.kotlinx.serialization.json)
 
     // Retrofit
     implementation (libs.retrofit)
