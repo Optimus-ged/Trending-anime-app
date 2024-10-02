@@ -28,8 +28,8 @@ fun TrendingAnimeListScreen(
             .background(MaterialTheme.colorScheme.background)
             .padding(
                 PaddingValues(
-                    top = 15.dp + innerPadding.calculateTopPadding(),
-                    bottom = 15.dp + innerPadding.calculateBottomPadding(),
+                    top = 0.dp + innerPadding.calculateTopPadding(),
+                    bottom = 0.dp + innerPadding.calculateBottomPadding(),
                 )
             )
     )
@@ -44,18 +44,21 @@ fun TrendingAnimeListScreen(
                 }else{
                     LazyColumn(
                         contentPadding = PaddingValues(
-                            top = innerPadding.calculateTopPadding() + 10.dp,
-                            start = 20.dp,
-                            end = 20.dp,
-                            bottom = innerPadding.calculateBottomPadding() + 10.dp,
+                            top = innerPadding.calculateTopPadding() + 0.dp,
+                            start = 0.dp,
+                            end = 0.dp,
+                            bottom = innerPadding.calculateBottomPadding() + 0.dp,
                         ),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        verticalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         item {
                             Text(
                                 text = "Trending Anime",
                                 style = MaterialTheme.typography.displaySmall,
-                                fontWeight = FontWeight.Bold
+                                modifier = Modifier.padding(
+                                    start = 10.dp,
+                                    bottom = 10.dp
+                                )
                             )
                         }
 
@@ -69,6 +72,7 @@ fun TrendingAnimeListScreen(
                             )
                         }
                     }
+
                 }
             }
         }
