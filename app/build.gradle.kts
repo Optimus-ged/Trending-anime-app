@@ -70,8 +70,12 @@ dependencies {
 //    implementation (libs.kotlinx.coroutines.core)
 //    implementation (libs.kotlinx.coroutines.android)
 
-    // Coroutines serialization
+    // coil image
+    implementation(libs.coil.compose)
+
+    // compose navigation
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.navigation.compose)
 
     // Retrofit
     implementation (libs.retrofit)

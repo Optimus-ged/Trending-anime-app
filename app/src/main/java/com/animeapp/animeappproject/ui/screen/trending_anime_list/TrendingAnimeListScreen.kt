@@ -1,20 +1,20 @@
 package com.animeapp.animeappproject.ui.screen.trending_anime_list
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.animeapp.animeappproject.ui.screen.trending_anime_list.composable.AnimeCard
 
 @Composable
 fun TrendingAnimeListScreen(
@@ -24,10 +24,15 @@ fun TrendingAnimeListScreen(
 
     Scaffold {
             innerPadding -> Box(
-        modifier = Modifier.background(MaterialTheme.colorScheme.background).padding(PaddingValues(
-            top = 15.dp + innerPadding.calculateTopPadding(),
-            bottom = 15.dp + innerPadding.calculateBottomPadding(),
-        )))
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.background)
+            .padding(
+                PaddingValues(
+                    top = 15.dp + innerPadding.calculateTopPadding(),
+                    bottom = 15.dp + innerPadding.calculateBottomPadding(),
+                )
+            )
+    )
         {
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -37,13 +42,35 @@ fun TrendingAnimeListScreen(
                 if(state.isLoading){
                     CircularProgressIndicator()
                 }else{
-                    Text(text = state.trendingAnimeItems.first().id,
-                        fontSize = 72.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+                    LazyColumn(
+                        contentPadding = PaddingValues(
+                            top = innerPadding.calculateTopPadding() + 10.dp,
+                            start = 20.dp,
+                            end = 20.dp,
+                            bottom = innerPadding.calculateBottomPadding() + 10.dp,
+                        ),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        item {
+                            Text(
+                                text = "Trending Anime",
+                                style = MaterialTheme.typography.displaySmall,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
 
+                        items(state.trendingAnimeItems) { anime ->
+                            AnimeCard(
+                                anime = anime,
+//                                onClick = {
+//                                    onAnimeClick(anime.attributes.posterImage.original, anime.id)
+//                                },
+//                                animatedVisibilityScope = animatedVisibilityScope
+                            )
+                        }
+                    }
+                }
             }
         }
     }
-    }
+}
