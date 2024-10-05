@@ -27,11 +27,12 @@ import com.animeapp.animeappproject.domain.model.AnimeData
 @Composable
 fun AnimeCard(
     anime : AnimeData,
-//    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+//    onClick: (() -> Unit)? = null,
+
 ){
     Card(
-//        onClick = onClick,
+//        onClick = onClick ?: {},
         modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

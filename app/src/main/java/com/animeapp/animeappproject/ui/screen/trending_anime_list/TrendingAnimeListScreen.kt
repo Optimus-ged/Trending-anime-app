@@ -54,7 +54,7 @@ fun TrendingAnimeListScreen(
                         item {
                             Text(
                                 text = "Trending Anime",
-                                style = MaterialTheme.typography.displaySmall,
+                                style = MaterialTheme.typography.bodySmall,
                                 modifier = Modifier.padding(
                                     start = 10.dp,
                                     bottom = 10.dp

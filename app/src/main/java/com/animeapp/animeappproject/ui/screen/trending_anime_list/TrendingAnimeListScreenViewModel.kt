@@ -19,6 +19,7 @@ class TrendingAnimeListScreenViewModel @Inject constructor(
 
     private val _state = mutableStateOf(TrendingListState())
     var state : State<TrendingListState> = _state
+
     private fun fetchData(){
         viewModelScope.launch {
             getTrendingAnimeList().onEach {
@@ -29,11 +30,13 @@ class TrendingAnimeListScreenViewModel @Inject constructor(
                         isLoading = false
                     )
                 }
+
                 is Resource.Error -> {
                     _state.value = state.value.copy(
                         isLoading = false
                     )
                 }
+
                 is Resource.Loading -> {
                     _state.value = state.value.copy(
                         isLoading = true
