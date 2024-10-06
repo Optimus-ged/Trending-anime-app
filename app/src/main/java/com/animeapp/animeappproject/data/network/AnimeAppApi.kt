@@ -10,7 +10,7 @@ interface AnimeAppApi {
 
     @GET("anime/{id}")
     suspend fun getAnime(
-        @Path("id") id: Int
+        @Path("id") id: String
     ): AnimeResponseDto
 
     companion object {

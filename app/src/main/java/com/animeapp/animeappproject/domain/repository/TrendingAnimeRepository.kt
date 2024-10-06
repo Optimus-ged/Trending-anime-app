@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TrendingAnimeRepository {
     fun getTrendingAnime(): Flow<Resource<List<AnimeData>>>
-    fun getAnimeById(id: Int): Flow<Resource<AnimeData?>>
+    fun getAnimeById(id: String): Flow<Resource<AnimeData?>>
 }

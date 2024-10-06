@@ -1,5 +1,10 @@
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.animeapp.animeappproject.ui.screen.trending_anime_list.composable
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,31 +13,31 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import coil.compose.AsyncImage
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.animeapp.animeappproject.domain.model.AnimeData
 
 @Composable
-fun AnimeCard(
+fun SharedTransitionScope.AnimeCard(
     anime : AnimeData,
     modifier: Modifier = Modifier,
-//    onClick: (() -> Unit)? = null,
-
+    onClick: () -> Unit,
+    animatedVisibilityScope: AnimatedVisibilityScope,
 ){
     Card(
-//        onClick = onClick ?: {},
+        onClick = onClick,
         modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -45,7 +50,11 @@ fun AnimeCard(
                 modifier = Modifier
                     .size(96.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    ,
+                    .sharedElement(
+                        rememberSharedContentState(key = anime.id),
+                        animatedVisibilityScope = animatedVisibilityScope,
+                    ),
+
                 contentScale = ContentScale.Crop,
             )
 

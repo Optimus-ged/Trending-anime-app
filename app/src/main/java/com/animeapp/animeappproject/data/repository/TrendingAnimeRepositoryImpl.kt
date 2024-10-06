@@ -16,6 +16,7 @@ class TrendingAnimeRepositoryImpl(
         emit(Resource.Loading())
         try {
             val result = api.getTrendingAnime()
+            println("nzolani ---> ${result.data.size}")
             emit(Resource.Success(
                 data = result.data.map { it.toModel() }
             ))
@@ -30,10 +31,11 @@ class TrendingAnimeRepositoryImpl(
         }
     }
 
-    override fun getAnimeById(id: Int): Flow<Resource<AnimeData?>> = flow {
+    override fun getAnimeById(id: String): Flow<Resource<AnimeData?>> = flow {
         emit(Resource.Loading())
         try {
             val result : AnimeData = api.getAnime(id).data.toModel()
+            println("nzolani ---> ${result.id}")
             emit(Resource.Success(data = result))
         } catch(e: HttpException) {
             emit(Resource.Error(

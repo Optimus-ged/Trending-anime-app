@@ -1,5 +1,10 @@
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.animeapp.animeappproject.ui.screen.trending_anime_list
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,13 +16,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.animeapp.animeappproject.AnimeScreen
 import com.animeapp.animeappproject.ui.screen.trending_anime_list.composable.AnimeCard
 
 @Composable
-fun TrendingAnimeListScreen(
+fun SharedTransitionScope.TrendingAnimeListScreen(
+    navController: NavController,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     trendingAnimeViewModel: TrendingAnimeListScreenViewModel = hiltViewModel()
 ) {
     val state = trendingAnimeViewModel.state.value
@@ -54,21 +63,24 @@ fun TrendingAnimeListScreen(
                         item {
                             Text(
                                 text = "Trending Anime",
-                                style = MaterialTheme.typography.bodySmall,
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.displaySmall,
                                 modifier = Modifier.padding(
                                     start = 10.dp,
                                     bottom = 10.dp
                                 )
                             )
                         }
-
                         items(state.trendingAnimeItems) { anime ->
                             AnimeCard(
                                 anime = anime,
-//                                onClick = {
-//                                    onAnimeClick(anime.attributes.posterImage.original, anime.id)
-//                                },
-//                                animatedVisibilityScope = animatedVisibilityScope
+                                onClick = {
+                                    navController.navigate(AnimeScreen(
+                                        id = anime.id,
+                                        coverImage = anime.attributes.posterImage.original
+                                    ))
+                                },
+                                animatedVisibilityScope = animatedVisibilityScope
                             )
                         }
                     }
