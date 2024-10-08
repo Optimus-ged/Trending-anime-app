@@ -16,7 +16,6 @@ class TrendingAnimeRepositoryImpl(
         emit(Resource.Loading())
         try {
             val result = api.getTrendingAnime()
-            println("nzolani ---> ${result.data.size}")
             emit(Resource.Success(
                 data = result.data.map { it.toModel() }
             ))
