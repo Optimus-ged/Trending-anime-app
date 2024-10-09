@@ -11,7 +11,7 @@
     - Sync Gradle: Open the project in Android Studio and ensure Gradle sync is successful.
     - Run the app: You can use a virtual android device or create one if you don't have it, or you can use a physical android device, plug the usb cable and run the app
 
-I developed this mobile app respecting the SOLID principals, by using the MVVM structure, Dagger hilt for dependency injection and JETPACK-COMPOSE for creating user interface
+I developed this mobile app respecting the SOLID principals, by using the MVVM structure, Dagger hilt for dependency injection and JETPACK-COMPOSE for creating the user interface
 
 ![Desktop view](/screenshots/animelist.jpeg)
 
