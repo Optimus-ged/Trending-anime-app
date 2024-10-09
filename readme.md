@@ -13,8 +13,8 @@
 
 I developed this mobile app respecting the SOLID principals, buy using the MVVM structure, Dagger hilt for dependency injection and JETPACK-COMPOSE for creating user interface
 
-![Desktop view](/screenshots/animelist.jpeg)
 *Anime list screen
+![Desktop view](/screenshots/animelist.jpeg)
 
-![Mobile view](/screenshots/anime.jpeg)
 *Anime details view
+![Mobile view](/screenshots/anime.jpeg)
