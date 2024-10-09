@@ -54,21 +54,10 @@ android {
 }
 
 dependencies {
-
-    // Compose dependencies
-//    implementation (libs.androidx.lifecycle.viewmodel.compose)
-
     // Dagger - Hilt
     implementation (libs.hilt.android)
     ksp (libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-
-    // Coroutine Lifecycle Scopes
-//    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-
-    // Coroutines
-//    implementation (libs.kotlinx.coroutines.core)
-//    implementation (libs.kotlinx.coroutines.android)
 
     // coil image
     implementation(libs.coil.compose)
